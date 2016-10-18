@@ -22,6 +22,26 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def show
+    item = Question.find(params[:id])
+    @presenter = {
+      item: item,
+      form: {
+        action: question_path(item),
+        method: 'PUT',
+        csrf_param: request_forgery_protection_token,
+        csrf_token: form_authenticity_token
+      }
+    }
+  end
+
+  def update
+    item = Question.find(params[:id])
+    ap item
+    item.update(permited_params)
+    redirect_to item
+  end
+
   private
 
   def permited_params
