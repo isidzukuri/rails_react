@@ -4,17 +4,21 @@ var QuestionFull = React.createClass({
   },
 
   handleSubmit: function ( formData, action ) {
-
-    alert(1)
     $.ajax({
       data: formData,
       url: action,
-      type: this.state.form.method,
+      type: 'post',
       dataType: "json",
       success: function ( data ) {
-        // this.setState({ items: data });
+        this.setState({ item: data });
+        this.toggleForm();
       }.bind(this)
     });
+  },
+
+  toggleForm: function(e){
+    this.setState( { edit: !this.state.edit } );
+    console.log(this.state.edit)
   },
 
   render: function () {
@@ -22,14 +26,18 @@ var QuestionFull = React.createClass({
 
     return (
       <div className="question_full">
-        <h2>{ item.title }</h2>
-        <div>{ item.content }</div>
+        <div className={this.state.edit ? 'hidden' : '' }>
+          <h2>{ item.title }</h2>
+          <div>{ item.content }</div>
+        </div>
 
-        <hr />
-        <div className='form_wrapper'>
+        <div className={this.state.edit ? '' : 'hidden'}>
           <h5>Change question:</h5>
           <QuestionForm form={ this.state.form } onSubmit={ this.handleSubmit } />
         </div>
+        
+        <button onClick={ this.toggleForm }>edit</button>
+        
         
       </div>
     );

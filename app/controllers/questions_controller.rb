@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
 
   def index
     @presenter = {
-      items: Question.all,
+      items: Question.last(5),
       form: {
         action: questions_path,
         csrf_param: request_forgery_protection_token,
@@ -37,9 +37,9 @@ class QuestionsController < ApplicationController
 
   def update
     item = Question.find(params[:id])
-    ap item
     item.update(permited_params)
-    redirect_to item
+    # redirect_to item
+    render :json => item
   end
 
   private
