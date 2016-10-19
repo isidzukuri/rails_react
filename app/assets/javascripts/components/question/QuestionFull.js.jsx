@@ -44,7 +44,6 @@ var QuestionFull = React.createClass({
   },
 
   markHelpfull: function(data){
-    console.log(data)
     this.setState( { item: data} );
   },
 

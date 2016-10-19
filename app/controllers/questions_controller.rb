@@ -30,8 +30,8 @@ class QuestionsController < ApplicationController
         csrf_token: form_authenticity_token
       }
     }
-  # rescue
-  #   redirect_to root_path
+    # rescue
+    #   redirect_to root_path
   end
 
   def update
@@ -43,7 +43,6 @@ class QuestionsController < ApplicationController
     result = @item ? @item.destroy : false
     render json: result
   end
-
 
   private
 

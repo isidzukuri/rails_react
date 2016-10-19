@@ -9,7 +9,6 @@ var Answer = React.createClass({
         if(data.errors){
           console.log('errors ');
         }else{
-          console.log(data);
           this.props.markHandler(data);
         }        
       }.bind(this)

@@ -1,5 +1,4 @@
 class AnswersController < ApplicationController
-
   def create
     @item = Answer.new(permited_params)
     @item.save
@@ -11,11 +10,11 @@ class AnswersController < ApplicationController
     answer = Answer.find(params[:id])
     if answer
       question = answer.question
-      question.answer_id =  answer.id
+      question.answer_id = answer.id
       question.save
       result = QuestionPresenter.json_object(question)
     else
-      result = {errors: ['item not found']}
+      result = { errors: ['item not found'] }
     end
     render json: result
   end
