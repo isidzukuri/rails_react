@@ -43,6 +43,11 @@ var QuestionFull = React.createClass({
     this.setState(newState);
   },
 
+  markHelpfull: function(data){
+    console.log(data)
+    this.setState( { item: data} );
+  },
+
   render: function () {
     var item = this.state.item;
 
@@ -84,7 +89,7 @@ var QuestionFull = React.createClass({
             answers:
           </div>
           <div className="panel-body">
-            <AnswersList items={ item.answers } />
+            <AnswersList items={ item.answers } markHandler={ this.markHelpfull } helpfull_id={ item.answer_id }  />
             <hr/>
             <AnswerForm question_id={ item.id } form={ this.state.form } clear_form={ true } afterSend={ this.addAnswer } />
           </div>

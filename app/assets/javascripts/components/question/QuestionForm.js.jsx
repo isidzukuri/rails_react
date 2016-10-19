@@ -11,11 +11,11 @@ class QuestionForm extends Form{
         <input type="hidden" name={ form.csrf_param } value={ form.csrf_token } />
         <input type="hidden" name='_method' value={ method } />
         <div className="form-group">
-          <label for="title">Title</label>
+          <label>Title</label>
           <input ref="title" className="form-control" name="question[title]" defaultValue={ title_val }/>
         </div>
         <div className="form-group">
-          <label for="content">Content</label>
+          <label>Content</label>
          <textarea ref="content" className="form-control" name="question[content]" defaultValue={ content_val } />
         </div>
         <button type="submit" className='btn btn-primary'>submit</button>

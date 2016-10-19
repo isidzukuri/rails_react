@@ -13,7 +13,7 @@ var Form = React.createClass({
 
   reset_form: function(){
     if(this.props.clear_form){
-      // this.refs.form.reset(); // doesnt work. Why?!!! it disables textarea
+      // this.refs.form.reset(); // doesnt work properly. Why?!!! it disables textarea
       this.refs.content.value = '';
       if(this.refs.title) this.refs.title.value = '';
     }
@@ -34,7 +34,6 @@ var Form = React.createClass({
         }        
       }.bind(this)
     });
-
   }
 
 });

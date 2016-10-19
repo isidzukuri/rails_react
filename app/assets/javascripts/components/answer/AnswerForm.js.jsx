@@ -11,7 +11,7 @@ class AnswerForm extends Form{
         <input type="hidden" name='_method' value={ method } />
         <input type="hidden" name="answer[question_id]" defaultValue={ this.props.question_id }/>
         <div className="form-group">
-          <label for="content">Answer:</label>
+          <label>Answer:</label>
          <textarea ref="content" className="form-control" name="answer[content]" defaultValue={ content_val } />
         </div>
         <button type="submit" className='btn btn-primary'>submit</button>

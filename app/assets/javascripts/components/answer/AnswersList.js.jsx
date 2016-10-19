@@ -1,8 +1,12 @@
 var AnswersList = React.createClass({
 
   render: function () {
+    var mark_handler = this.props.markHandler;
+    var helpfull_id = this.props.helpfull_id;
+
     var nodes = this.props.items.map(function ( item ) {
-      return <Answer content={ item.content } created_at={ item.created_at } key={ item.id } />
+      var helpfull = item.id == helpfull_id;
+      return <Answer item={ item } key={ item.id } markHandler={ mark_handler } helpfull={ helpfull } />
     });
 
     return (
