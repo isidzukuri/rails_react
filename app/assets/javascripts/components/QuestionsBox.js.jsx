@@ -3,16 +3,8 @@ var QuestionsBox = React.createClass({
     return this.props.presenter;
   },
 
-  handleSubmit: function ( formData, action ) {
-    $.ajax({
-      data: formData,
-      url: action,
-      type: "POST",
-      dataType: "json",
-      success: function ( data ) {
-        this.setState({ items: data });
-      }.bind(this)
-    });
+  updateList: function ( data ) {
+    this.setState({ items: this.state.items.concat([data]) })
   },
 
   render: function () {
@@ -21,7 +13,7 @@ var QuestionsBox = React.createClass({
         <QuestionsList items={ this.state.items } />
         <hr />
         <h2>Add a question:</h2>
-        <QuestionForm form={ this.state.form } onSubmit={ this.handleSubmit } clear_form={ true } />
+        <QuestionForm form={ this.state.form } afterSend={ this.updateList } clear_form={ true } />
       </div>
     );
   }

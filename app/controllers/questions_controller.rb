@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :find_item, only: [:update, :destroy, :show]
 
   def index
     @presenter = {
@@ -12,24 +13,16 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    item = Question.new(permited_params)
-    item.save
-    ap item.errors.messages
-    ap '====='
-
-    if request.xhr?
-      render :json => Question.last(5)
-    else
-      redirect_to questions_path
-    end
+    @item = Question.new(permited_params)
+    @item.save
+    save_responce
   end
 
   def show
-    item = Question.find(params[:id])
     @presenter = {
-      item: item,
+      item: @item,
       form: {
-        action: question_path(item),
+        action: question_path(@item),
         method: 'PUT',
         csrf_param: request_forgery_protection_token,
         csrf_token: form_authenticity_token
@@ -38,13 +31,30 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    item = Question.find(params[:id])
-    item.update(permited_params)
-    # redirect_to item
-    render :json => item
+    @item.update(permited_params)
+    save_responce
   end
 
+  def destroy
+    result = @item ? @item.destroy : false
+    render json: result
+  end
+
+
   private
+
+  def save_responce
+    if @item.errors.any?
+      result = {errors: @item.errors.messages.to_a}
+    else
+      result = @item
+    end
+    render json: result
+  end
+
+  def find_item
+    @item = Question.find(params[:id])
+  end
 
   def permited_params
     params.require(:question).permit(:title, :content)

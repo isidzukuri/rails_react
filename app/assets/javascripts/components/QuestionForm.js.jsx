@@ -24,10 +24,8 @@ var QuestionForm = React.createClass({
 
   handleSubmit: function ( event ) {
     event.preventDefault();
-    if(this.validate(['title', 'content'])){
-      this.submit()
-      this.reset_form();
-    }
+    this.submit()
+    this.reset_form();
   },
 
   reset_form: function(){
@@ -38,21 +36,20 @@ var QuestionForm = React.createClass({
 
   submit: function(){
     var formData = $( this.refs.form ).serialize();
-    this.props.onSubmit( formData, this.props.form.action );
-  },
-
-  validate: function(fields){
-    var errors = [];
-    self = this;
-    fields.forEach(function(item, i) {
-      result = self.any_errors(item);
-      if(result) errors.push(result)
+    $.ajax({
+      data: formData,
+      url: this.props.form.action,
+      type: 'post',
+      dataType: "json",
+      success: function ( data ) {
+        if(data.errors){
+          this.setState( { errors: data.errors } );
+        }else{
+          this.props.afterSend(data);
+        }        
+      }.bind(this)
     });
-    this.setState( { errors: errors } );
-    return errors.length ? false : true;
-  },
 
-  any_errors: function(key){
-    return this.refs[key].value.trim() ? false : {title: key+' not valid'};
   }
+
 });
