@@ -12,8 +12,10 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @item = Question.new(permited_params)
-    @item.save
+    item = Question.new(permited_params)
+    item.save
+    ap item.errors.messages
+    ap '====='
 
     if request.xhr?
       render :json => Question.last(5)

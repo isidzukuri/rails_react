@@ -21,7 +21,7 @@ var QuestionsBox = React.createClass({
         <QuestionsList items={ this.state.items } />
         <hr />
         <h2>Add a question:</h2>
-        <QuestionForm form={ this.state.form } onSubmit={ this.handleSubmit } />
+        <QuestionForm form={ this.state.form } onSubmit={ this.handleSubmit } clear_form={ true } />
       </div>
     );
   }

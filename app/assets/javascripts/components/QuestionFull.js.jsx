@@ -10,6 +10,9 @@ var QuestionFull = React.createClass({
       type: 'post',
       dataType: "json",
       success: function ( data ) {
+        console.log(data)
+
+        
         this.setState({ item: data });
         this.toggleForm();
       }.bind(this)
@@ -33,7 +36,7 @@ var QuestionFull = React.createClass({
 
         <div className={this.state.edit ? '' : 'hidden'}>
           <h5>Change question:</h5>
-          <QuestionForm form={ this.state.form } onSubmit={ this.handleSubmit } />
+          <QuestionForm form={ this.state.form } item={ item } onSubmit={ this.handleSubmit } />
         </div>
         
         <button onClick={ this.toggleForm }>edit</button>
