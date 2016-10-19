@@ -1,8 +1,8 @@
-var QuestionsList = React.createClass({
+var AnswersList = React.createClass({
 
   render: function () {
     var nodes = this.props.items.map(function ( item ) {
-      return <Question title={ item.title } content={ item.content } bd_id={ item.id } key={ item.id } />
+      return <Answer content={ item.content } created_at={ item.created_at } key={ item.id } />
     });
 
     return (

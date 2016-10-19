@@ -1,10 +1,17 @@
 var QuestionFull = React.createClass({
   getInitialState: function () {
+    console.log(this.props.presenter)
     return this.props.presenter;
   },
 
   showItem: function(data){
-    this.setState({ item: data });
+    var newState = React.addons.update(this.state, {
+      item: {
+        content: { $set: data.content },
+        title: { $set: data.title }
+      }
+    });
+    this.setState(newState);
     this.toggleForm();
   },
 
@@ -23,29 +30,66 @@ var QuestionFull = React.createClass({
         if(response) window.location = '/questions';
       } 
     });
+  },
 
+  addAnswer: function(data){
+    // this.setState({item:{ answers: this.state.item.answers.concat([data]) }})
+    answers = this.state.item.answers.concat([data]);
+    var newState = React.addons.update(this.state, {
+      item: {
+        answers: { $set: answers }
+      }
+    });
+    this.setState(newState);
   },
 
   render: function () {
     var item = this.state.item;
 
     return (
-      <div className="question_full">
+      <div>
         <div className={this.state.edit ? 'hidden' : '' }>
-          <h2>{ item.title }</h2>
-          <div>{ item.content }</div>
+          
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              <b>{ item.title }</b>
+              <div className='pull-right'>
+                <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >edit</button>
+                <button onClick={this.handleDelete} className='btn btn-xs btn-danger' >delete</button>
+              </div>
+            </div>
+            <div className="panel-body">
+              { item.content }
+            </div>
+          </div>
         </div>
 
         <div className={this.state.edit ? '' : 'hidden'}>
-          <h5>Change question:</h5>
-          <QuestionForm form={ this.state.form } item={ item } afterSend={ this.showItem } />
+          <div className="panel panel-default">
+            <div className="panel-heading">
+              Change question:
+              <div className='pull-right'>
+                <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >cancel</button>
+                <button onClick={this.handleDelete} className='btn btn-xs btn-danger' >delete</button>
+              </div>
+            </div>
+            <div className="panel-body">
+              <QuestionForm form={ this.state.form } item={ item } afterSend={ this.showItem } />
+            </div>
+          </div>
         </div>
         
-        <button onClick={ this.toggleForm }>edit</button>
+        <div className='panel panel-info'>
+          <div className="panel-heading">
+            answers:
+          </div>
+          <div className="panel-body">
+            <AnswersList items={ item.answers } />
+            <hr/>
+            <AnswerForm question_id={ item.id } form={ this.state.form } clear_form={ true } afterSend={ this.addAnswer } />
+          </div>
+        </div>
 
-        <button onClick={this.handleDelete} className='btn btn-default' >delete</button>
-       
-        
       </div>
     );
   }

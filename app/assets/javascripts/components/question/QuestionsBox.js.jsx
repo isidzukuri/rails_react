@@ -9,12 +9,17 @@ var QuestionsBox = React.createClass({
 
   render: function () {
     return (
-      <div className="quesrtions-box">
-        <QuestionsList items={ this.state.items } />
-        <hr />
-        <h2>Add a question:</h2>
-        <QuestionForm form={ this.state.form } afterSend={ this.updateList } clear_form={ true } />
+      <div className="panel panel-default">
+        <div className="panel-heading">Questions</div>
+        <div className="panel-body">
+          <QuestionsList items={ this.state.items } />
+          <hr />
+          <h2>Add a question:</h2>
+          <QuestionForm form={ this.state.form } afterSend={ this.updateList } clear_form={ true } />
+        </div>
       </div>
+
     );
   }
 });
+

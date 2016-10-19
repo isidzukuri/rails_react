@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :find_item, only: [:update, :destroy, :show]
+  before_action :find_item, only: [:update, :destroy]
 
   def index
     @presenter = {
@@ -19,6 +19,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @item = QuestionPresenter.json_object(Question.eager_load(:answers).find(params[:id]))
+
     @presenter = {
       item: @item,
       form: {
@@ -28,6 +30,8 @@ class QuestionsController < ApplicationController
         csrf_token: form_authenticity_token
       }
     }
+  # rescue
+  #   redirect_to root_path
   end
 
   def update
@@ -42,15 +46,6 @@ class QuestionsController < ApplicationController
 
 
   private
-
-  def save_responce
-    if @item.errors.any?
-      result = {errors: @item.errors.messages.to_a}
-    else
-      result = @item
-    end
-    render json: result
-  end
 
   def find_item
     @item = Question.find(params[:id])
