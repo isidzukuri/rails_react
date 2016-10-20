@@ -6,7 +6,7 @@ var QuestionsList = React.createClass({
     });
 
     return (
-      <div className="questions-list">
+      <div className="list-group">
         { nodes }
       </div>
     )

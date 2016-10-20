@@ -13,7 +13,9 @@ var Form = React.createClass({
 
   reset_form: function(){
     if(this.props.clear_form){
-      this.refs.form.reset();
+      // this.refs.form.reset(); // doesnt work properly. Why?!!! it disables textarea
+      this.refs.content.value = '';
+      if(this.refs.title) this.refs.title.value = '';
     }
   },
 
@@ -21,18 +23,18 @@ var Form = React.createClass({
     var formData = $( this.refs.form ).serialize();
     $.ajax({
       data: formData,
-      url: this.props.form.action,
+      url: this.refs.form.action,
       type: 'post',
       dataType: "json",
       success: function ( data ) {
         if(data.errors){
           this.setState( { errors: data.errors } );
         }else{
+          this.setState( { errors: [] } );
           this.props.afterSend(data);
         }        
       }.bind(this)
     });
-
   }
 
 });

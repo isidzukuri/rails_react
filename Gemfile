@@ -33,6 +33,17 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'awesome_print'
+  gem 'faker'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails', :require => false
+  gem 'webmock'
+  gem 'rack_session_access'
+  gem "capybara"
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -42,7 +53,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'awesome_print'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -52,3 +62,5 @@ gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap
 gem 'active_decorator', '0.7.1'
 gem 'haml', '4.0.7'
 gem 'react-rails'
+gem 'devise', '4.2.0'
+gem 'devise-bootstrap-views', '0.0.9'

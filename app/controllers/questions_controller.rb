@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :find_item, only: [:update, :destroy, :show]
+  before_action :find_item, only: [:update, :destroy]
+  before_action :require_permission, only: [:update, :destroy]
 
   def index
     @presenter = {
@@ -13,12 +14,16 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @item = Question.new(permited_params)
+    data = permited_params
+    data[:user] = current_user
+    @item = Question.new(data)
     @item.save
     save_responce
   end
 
   def show
+    question = Question.eager_load(:answers, :user).find(params[:id])
+    @item = QuestionPresenter.full(question, current_user.id)
     @presenter = {
       item: @item,
       form: {
@@ -28,6 +33,9 @@ class QuestionsController < ApplicationController
         csrf_token: form_authenticity_token
       }
     }
+    rescue
+      flash[:error] = "Something wrong with item #{params[:id]}, call your admin."
+      redirect_to root_path
   end
 
   def update
@@ -40,17 +48,7 @@ class QuestionsController < ApplicationController
     render json: result
   end
 
-
   private
-
-  def save_responce
-    if @item.errors.any?
-      result = {errors: @item.errors.messages.to_a}
-    else
-      result = @item
-    end
-    render json: result
-  end
 
   def find_item
     @item = Question.find(params[:id])
