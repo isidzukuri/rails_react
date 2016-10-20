@@ -9,13 +9,13 @@ class AnswersController < ApplicationController
   end
 
   def helpfull
-    answer = Answer.find(params[:id])
+    answer = Answer.find_by_id(params[:id])
     if answer
       @item = answer.question
       require_permission
       @item.answer_id = answer.id
       @item.save
-      result = QuestionPresenter.json_object(@item)
+      result = QuestionPresenter.full(@item, current_user.id)
     else
       result = { errors: ['item not found'] }
     end

@@ -34,8 +34,16 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'awesome_print'
-  gem 'rspec-rails', '~> 3.5'
   gem 'faker'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails', :require => false
+  gem 'webmock'
+  gem 'rack_session_access'
+  gem "capybara"
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -54,6 +62,5 @@ gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap
 gem 'active_decorator', '0.7.1'
 gem 'haml', '4.0.7'
 gem 'react-rails'
-gem 'active_decorator', '0.7.1'
 gem 'devise', '4.2.0'
 gem 'devise-bootstrap-views', '0.0.9'
