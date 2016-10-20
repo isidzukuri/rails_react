@@ -53,17 +53,20 @@ var QuestionFull = React.createClass({
     return (
       <div>
         <div className={this.state.edit ? 'hidden' : '' }>
-          
           <div className="panel panel-default">
             <div className="panel-heading">
               <b>{ item.title }</b>
-              <div className='pull-right'>
-                <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >edit</button>
-                <button onClick={this.handleDelete} className='btn btn-xs btn-danger' >delete</button>
-              </div>
+               {item.editable ? (
+                  <div className='pull-right'>
+                    <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >edit</button>
+                    <button onClick={this.handleDelete} className='btn btn-xs btn-danger' >delete</button>
+                  </div>
+                )
+              : null}
             </div>
             <div className="panel-body">
               { item.content }
+              <small className='pull-right'>{ item.user.email } at { item.created_at }</small>
             </div>
           </div>
         </div>
@@ -88,7 +91,7 @@ var QuestionFull = React.createClass({
             answers:
           </div>
           <div className="panel-body">
-            <AnswersList items={ item.answers } markHandler={ this.markHelpfull } helpfull_id={ item.answer_id }  />
+            <AnswersList items={ item.answers } markHandler={ this.markHelpfull } helpfull_id={ item.answer_id } editable={ item.editable }  />
             <hr/>
             <AnswerForm question_id={ item.id } form={ this.state.form } clear_form={ true } afterSend={ this.addAnswer } />
           </div>

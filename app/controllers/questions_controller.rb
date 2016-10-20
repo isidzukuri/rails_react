@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :find_item, only: [:update, :destroy]
+  before_action :require_permission, only: [:update, :destroy]
 
   def index
     @presenter = {
@@ -13,13 +14,18 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @item = Question.new(permited_params)
+    data = permited_params
+    data[:user] = current_user
+    @item = Question.new(data)
     @item.save
     save_responce
   end
 
   def show
-    @item = QuestionPresenter.json_object(Question.eager_load(:answers).find(params[:id]))
+    # @item = QuestionPresenter.json_object(Question.eager_load(:answers, :user).find(params[:id]))
+    
+    @item = QuestionPresenter.full(Question.eager_load(:answers, :user).find(params[:id]), current_user.id)
+
 
     @presenter = {
       item: @item,

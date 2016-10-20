@@ -52,3 +52,6 @@ gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap
 gem 'active_decorator', '0.7.1'
 gem 'haml', '4.0.7'
 gem 'react-rails'
+gem 'active_decorator', '0.7.1'
+gem 'devise', '4.2.0'
+gem 'devise-bootstrap-views', '0.0.9'

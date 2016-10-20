@@ -17,14 +17,15 @@ var Answer = React.createClass({
 
   render: function () {
     var item = this.props.item;
-    class_str = 'list-group-item';
+    var class_str = 'list-group-item';
     if(this.props.helpfull) class_str += ' list-group-item-success';
+    var show_button = this.props.editable && !this.props.helpfull;
 
     return (
       <div className={ class_str }>
         <p> { item.content } </p>
         <small className='pull-right'>{ item.created_at }</small>
-        <div className={this.props.helpfull ? 'hidden' : ''}>
+        <div className={show_button ? '' : 'hidden'}>
           <button className='pull-left btn btn-xs btn-success' onClick={ this.markHelpfull } >mark as helpfull</button>
         </div>
         <div className='clearfix'></div>

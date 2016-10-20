@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :authenticate_user!
 
   private
 
@@ -11,4 +12,9 @@ class ApplicationController < ActionController::Base
              end
     render json: result
   end
+
+  def require_permission
+    raise SecurityError.new('Resource not belongs to user.') unless current_user == @item.user
+  end
+
 end

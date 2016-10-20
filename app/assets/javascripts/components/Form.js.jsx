@@ -30,6 +30,7 @@ var Form = React.createClass({
         if(data.errors){
           this.setState( { errors: data.errors } );
         }else{
+          this.setState( { errors: [] } );
           this.props.afterSend(data);
         }        
       }.bind(this)
