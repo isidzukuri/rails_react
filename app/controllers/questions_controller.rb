@@ -22,11 +22,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    # @item = QuestionPresenter.json_object(Question.eager_load(:answers, :user).find(params[:id]))
-    
-    @item = QuestionPresenter.full(Question.eager_load(:answers, :user).find(params[:id]), current_user.id)
-
-
+    question = Question.eager_load(:answers, :user).find(params[:id])
+    @item = QuestionPresenter.full(question, current_user.id)
     @presenter = {
       item: @item,
       form: {
@@ -36,8 +33,9 @@ class QuestionsController < ApplicationController
         csrf_token: form_authenticity_token
       }
     }
-    # rescue
-    #   redirect_to root_path
+    rescue
+      flash[:error] = "Something wrong with item #{params[:id]}, call your admin."
+      redirect_to root_path
   end
 
   def update
