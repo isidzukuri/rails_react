@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   def index
     @presenter = {
-      items: Question.last(5),
+      items: Question.all,
       form: {
         action: questions_path,
         csrf_param: request_forgery_protection_token,
