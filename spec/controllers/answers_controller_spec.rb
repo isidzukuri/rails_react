@@ -53,11 +53,7 @@ RSpec.describe AnswersController, type: :controller do
     it "should have expected data" do
       sign_in_user
       post :helpfull, :id => answer.id
-      with_helpfull = expected_hash
-      with_helpfull[:answer_id] = 1
-      data = JSON.parse(response.body)
-      expect(data).to include(with_helpfull.as_json)
-      expect(data['answers'].first).to include(expected_answer_hash.as_json)
+      expect(response.body.to_i).to eq answer.id
     end
 
     it 'should have expected data' do
