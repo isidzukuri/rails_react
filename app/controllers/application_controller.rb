@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_permission
-    raise SecurityError.new('Resource not belongs to user.') unless current_user == @item.user
+    raise SecurityError, 'Resource not belongs to user.' unless current_user == @item.user
   end
-
 end

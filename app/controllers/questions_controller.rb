@@ -33,9 +33,9 @@ class QuestionsController < ApplicationController
         csrf_token: form_authenticity_token
       }
     }
-    rescue
-      flash[:error] = "Something wrong with item #{params[:id]}, call your admin."
-      redirect_to root_path
+  rescue
+    flash[:error] = "Something wrong with item #{params[:id]}, call your admin."
+    redirect_to root_path
   end
 
   def update

@@ -1,5 +1,4 @@
 class AnswersController < ApplicationController
-
   def create
     data = permited_params
     data[:user] = current_user
