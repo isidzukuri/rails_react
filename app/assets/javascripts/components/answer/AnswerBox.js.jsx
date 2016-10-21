@@ -8,8 +8,6 @@ var AnswerBox = React.createClass({
   },
 
   addItem: function(data){
-
-    console.log(data)
     answers = this.state.item.answers.concat([data]);
     this.updateState('answers', answers);
   },
