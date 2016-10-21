@@ -15,7 +15,7 @@ class AnswersController < ApplicationController
       require_permission
       @item.answer_id = answer.id
       @item.save
-      result = QuestionPresenter.full(@item, current_user.id)
+      result = answer.id
     else
       result = { errors: ['item not found'] }
     end
@@ -23,6 +23,15 @@ class AnswersController < ApplicationController
   end
 
   private
+
+  def save_responce
+    result = if @item.errors.any?
+               { errors: @item.errors.messages.to_a }
+             else
+               AnswerPresenter.full(@item)
+             end
+    render json: result
+  end
 
   def permited_params
     params.require(:answer).permit(:question_id, :content)

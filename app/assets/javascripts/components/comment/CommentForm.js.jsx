@@ -1,5 +1,4 @@
-class AnswerForm extends Form{
-  
+class CommentForm extends Form{
 
   render() {
     var form = this.props.form
@@ -7,13 +6,16 @@ class AnswerForm extends Form{
     var method = 'post';
 
     return (
-      <form ref="form" action={ '/answers' } acceptCharset="UTF-8" method='post' onSubmit={ this.handleSubmit }>
+      <form ref="form" action={ '/comments' } acceptCharset="UTF-8" method='post' onSubmit={ this.handleSubmit }>
         <input type="hidden" name={ form.csrf_param } value={ form.csrf_token } />
         <input type="hidden" name='_method' value={ method } />
-        <input type="hidden" name="answer[question_id]" defaultValue={ this.props.question_id }/>
+        
+        <input type="hidden" name="type" defaultValue={ this.props.type }/>
+        <input type="hidden" name="item_id" defaultValue={ this.props.item_id }/>
+
         <div className="form-group">
-          <label>Answer:</label>
-         <textarea ref="content" className="form-control" name="answer[content]" defaultValue={ content_val } />
+          <label>Comment:</label>
+         <textarea ref="content" className="form-control" name="content" defaultValue={ content_val } />
         </div>
         <button type="submit" className='btn btn-primary'>submit</button>
         <ValidationErrorsList items={ this.state.errors } />
