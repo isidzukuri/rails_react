@@ -1,31 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe QuestionPresenter do
-  let!(:password) { '123456' }
-  let!(:email) { 'user@example.com' }
-  let!(:user) do
-    User.create(
-      email: email,
-      password: password,
-      password_confirmation: password
-    )
-  end
-  let!(:question) { Question.create(title: 'question?', content: 'question content?', user: user) }
-  let!(:answer) { Answer.create(question: question, content: 'answer content', user: user) }
-  let!(:result) { QuestionPresenter.full(question, user.id) }
-  let(:expected_hash) do
-    { title: 'question?',
-      content: 'question content?',
-      user_id: 1,
-      editable: true,
-      votes_total: 0 }
-  end
-  let(:expected_answer_hash) do
-    { question_id: 1,
-      content: 'answer content',
-      user_id: 1,
-      votes_total: 0 }
-  end
+  include LetCollection
 
   describe '#full' do
     it 'should have data' do

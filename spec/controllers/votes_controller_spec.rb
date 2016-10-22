@@ -1,35 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe VotesController, type: :controller do
-  let!(:user) do
-    User.create(
-      email: 'email@email.com',
-      password: 'password',
-      password_confirmation: 'password'
-    )
-  end
-
-  let!(:user_two) do
-    User.create(
-      email: 'email2@email.com',
-      password: 'password',
-      password_confirmation: 'password'
-    )
-  end
-
-  let(:expected_hash) do
-    { title: 'question?',
-      content: 'question content?',
-      user_id: 1 }
-  end
-  let(:question) { Question.create(expected_hash) }
-  let(:expected_answer_hash) do
-    { question_id: 1,
-      content: 'answer content',
-      user_id: 1 }
-  end
-  let(:question) { Question.create(expected_hash) }
-  let!(:answer) { Answer.create(question: question, content: 'answer content', user: user) }
+  include LetCollection
 
   describe 'vote' do
     it 'should not work without login' do
