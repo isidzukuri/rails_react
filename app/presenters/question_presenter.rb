@@ -18,11 +18,11 @@ class QuestionPresenter
     struct
   end
 
-  private 
+  private
 
   attr_accessor :struct
 
   def include_answers
-    struct['answers'] = @item.answers.map{|answer| AnswerPresenter.full(answer, user_id)}
+    struct['answers'] = @item.answers.map { |answer| AnswerPresenter.full(answer, user_id) }
   end
 end

@@ -1,5 +1,4 @@
 class VotesController < ApplicationController
-
   def vote
     model = params[:type].classify.constantize
     item = model.find(params[:item_id])
@@ -11,5 +10,4 @@ class VotesController < ApplicationController
     end
     render json: item.votes_total
   end
- 
 end
