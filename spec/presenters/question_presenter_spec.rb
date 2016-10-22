@@ -17,12 +17,14 @@ RSpec.describe QuestionPresenter do
     { title: 'question?',
       content: 'question content?',
       user_id: 1,
-      editable: true }
+      editable: true,
+      votes_total: 0 }
   end
   let(:expected_answer_hash) do
     { question_id: 1,
       content: 'answer content',
-      user_id: 1 }
+      user_id: 1,
+      votes_total: 0 }
   end
 
   describe '#full' do
