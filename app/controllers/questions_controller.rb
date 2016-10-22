@@ -24,9 +24,9 @@ class QuestionsController < ApplicationController
       item: @item,
       form: form(question_path(@item), 'PUT')
     }
-    # rescue
-    #   flash[:error] = "Something wrong with item #{params[:id]}, call your admin."
-    #   redirect_to root_path
+  rescue
+    flash[:error] = "Something wrong with item #{params[:id]}, call your admin."
+    redirect_to root_path
   end
 
   def update
@@ -41,7 +41,7 @@ class QuestionsController < ApplicationController
 
   private
 
-  def form(path, form_method = 'POST')
+  def form path, form_method = 'POST'
     {
       action: path,
       method: form_method,
