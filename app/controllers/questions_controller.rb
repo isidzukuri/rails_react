@@ -5,11 +5,7 @@ class QuestionsController < ApplicationController
   def index
     @presenter = {
       items: Question.all,
-      form: {
-        action: questions_path,
-        csrf_param: request_forgery_protection_token,
-        csrf_token: form_authenticity_token
-      }
+      form: form(questions_path)
     }
   end
 
@@ -26,12 +22,7 @@ class QuestionsController < ApplicationController
     @item = QuestionPresenter.full(question, current_user.id)
     @presenter = {
       item: @item,
-      form: {
-        action: question_path(@item),
-        method: 'PUT',
-        csrf_param: request_forgery_protection_token,
-        csrf_token: form_authenticity_token
-      }
+      form: form(question_path(@item), 'PUT')
     }
   rescue
     flash[:error] = "Something wrong with item #{params[:id]}, call your admin."
@@ -49,6 +40,15 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def form path, form_method = 'POST'
+    {
+      action: path,
+      method: form_method,
+      csrf_param: request_forgery_protection_token,
+      csrf_token: form_authenticity_token
+    }
+  end
 
   def find_item
     @item = Question.find(params[:id])
