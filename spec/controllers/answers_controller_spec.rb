@@ -50,9 +50,9 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'helpfull' do
-    it "should have expected data" do
+    it 'should have expected data' do
       sign_in_user
-      post :helpfull, :id => answer.id
+      post :helpfull, id: answer.id
       expect(response.body.to_i).to eq answer.id
     end
 
