@@ -50,8 +50,11 @@ var QuestionFull = React.createClass({
               : null}
             </div>
             <div className="panel-body">
-              { item.content }
-              <small className='pull-right text-lowercase'>{ item.user.email } at { item.created_at }</small>
+              <Votes item={ item } type='question' />
+              <div>
+                { item.content }
+                <small className='pull-right text-lowercase'>{ item.user.email } at { item.created_at }</small>
+              </div>              
             </div>
             
             <div className="panel-footer">

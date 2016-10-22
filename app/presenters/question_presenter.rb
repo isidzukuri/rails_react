@@ -1,7 +1,6 @@
 class QuestionPresenter
   def self.full(item, user_id = nil)
-    # item = item.as_json(include: [:answers, :user, :comments])
-    item = item.as_json(include: { answers: {
+    struct = item.as_json(include: { answers: {
                           include: {
                             comments: {}
                           }
@@ -9,7 +8,8 @@ class QuestionPresenter
                                    user: {},
                                    comments: {} })
 
-    item['editable'] = user_id == item['user']['id']
-    item
+    struct['editable'] = user_id == item.id
+    struct['votes_total'] = item.votes_total
+    struct
   end
 end

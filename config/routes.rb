@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :answers, except: [:show, :edit]
   resources :comments, except: [:show, :edit]
 
+  get '/vote', to: 'votes#vote', as: 'vote'
+
   match ':controller(/:action(/:id))', :via => 'get' 
 
   root 'questions#index'
