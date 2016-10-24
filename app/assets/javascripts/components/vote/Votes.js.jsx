@@ -3,10 +3,12 @@ var Votes = React.createClass({
     return this.props;
   },
 
-  plus: function(){
+  plus: function(event){
+    event.preventDefault();
     this.vote(1);    
   },
-  minus: function(){
+  minus: function(event){
+    event.preventDefault();
     this.vote(-1);    
   },
 

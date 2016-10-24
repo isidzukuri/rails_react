@@ -3,8 +3,9 @@ class QuestionsController < ApplicationController
   before_action :require_permission, only: [:update, :destroy]
 
   def index
+    items = Question.where(filter).eager_load(:user, :votes).all
     @presenter = {
-      items: Question.where(filter).all,
+      items: items.map{|item| QuestionPresenter.to_list_item(item) },
       form: form(questions_path)
     }
   end

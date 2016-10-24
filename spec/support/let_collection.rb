@@ -20,12 +20,19 @@ module LetCollection
       let!(:question) { Question.create(title: 'question?', content: 'question content?', user: user) }
       let!(:answer) { Answer.create(question: question, content: 'answer content', user: user) }
       let!(:result) { QuestionPresenter.full(question, user.id) }
+      let!(:list_item) { QuestionPresenter.full(question) }
       let(:expected_hash) do
         { title: 'question?',
           content: 'question content?',
           user_id: 1,
           editable: true,
           votes_total: 0 }
+      end
+      let(:question_list_item) do
+        { title: 'question?',
+          content: 'question content?',
+          user_id: 1,
+          votes_total: 0}
       end
       let(:question_hash) do
         { title: 'question?',

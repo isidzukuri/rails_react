@@ -24,7 +24,7 @@ var QuestionsList = React.createClass({
 
   render: function () {
     var nodes = this.state.elements.map(function ( item ) {
-      return <Question title={ item.title } content={ item.content } bd_id={ item.id } key={ item.id } />
+      return <Question item={ item } key={ item.id } />
     });
 
     return (
