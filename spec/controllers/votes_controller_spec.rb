@@ -43,7 +43,7 @@ RSpec.describe VotesController, type: :controller do
       expect(response.body.to_i).to eq -1
 
       get :vote, params: { item_id: 1, vote: 1, type: 'answer' }
-      expect(response.body.to_i).to eq 1
+      expect(response.body.to_i).to eq 0
     end
 
     it 'should permit only one vote point per user' do

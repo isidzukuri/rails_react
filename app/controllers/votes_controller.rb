@@ -6,7 +6,8 @@ class VotesController < ApplicationController
     if !vote
       item.votes.create(user_id: current_user.id, value: params[:vote].to_i)
     else
-      vote.update(value: params[:vote].to_i)
+      value = vote.value + params[:vote].to_i
+      vote.update(value: value)
     end
     render json: item.votes_total
   end
