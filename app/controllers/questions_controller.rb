@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   def index
     @presenter = {
-      items: Question.all,
+      items: Question.where(filter).all,
       form: form(questions_path)
     }
   end
@@ -56,5 +56,10 @@ class QuestionsController < ApplicationController
 
   def permited_params
     params.require(:question).permit(:title, :content)
+  end
+
+  def filter
+    filter = {}
+    filter = ['title LIKE ?', "%#{params[:filter]}%"] if params[:filter] 
   end
 end
