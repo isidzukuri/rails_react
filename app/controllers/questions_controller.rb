@@ -61,6 +61,6 @@ class QuestionsController < ApplicationController
 
   def filter
     filter = {}
-    filter = ['title LIKE ?', "%#{params[:filter]}%"] if params[:filter] 
+    filter = ['title ILIKE ?', "%#{params[:filter]}%"] if params[:filter] 
   end
 end
