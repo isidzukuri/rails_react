@@ -5,7 +5,8 @@ var QuestionsList = React.createClass({
   filterItems: function(filter){
     elements = this.state.items;
     var elements = elements.filter(function ( item ) {
-      return item.title.toLowerCase().includes(filter) ? item : false;
+      // return item.title.toLowerCase().includes(filter) ? item : false;
+      return false
     })
     this.setState({ elements: elements })
     return elements;
