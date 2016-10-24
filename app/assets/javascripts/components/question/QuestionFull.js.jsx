@@ -53,7 +53,7 @@ var QuestionFull = React.createClass({
               <Votes item={ item } type='question' />
               <div>
                 { item.content }
-                <small className='pull-right text-lowercase'>{ item.user.email } at { item.created_at }</small>
+                <small className='pull-right text-lowercase'>{ item.user.email } at { item.date }</small>
               </div>              
             </div>
             

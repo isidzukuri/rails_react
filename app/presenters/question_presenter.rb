@@ -14,6 +14,7 @@ class QuestionPresenter
     @struct = item.as_json(include: [:user, :comments])
     struct['editable'] = user_id == item.user_id
     struct['votes_total'] = item.votes_total
+    struct['date'] = item.created_at.strftime('%H:%M %d.%m.%Y')
     include_answers
     struct
   end
