@@ -11,7 +11,8 @@ var QuestionsList = React.createClass({
     return elements;
   }, 
   componentWillMount: function(){
-    this.filterItems('')
+    this.setState({ sort_by: 'timestamp', order_desc: false });
+    this.filterItems('');
   },
   liveFilter: function(event){
     this.setState({ filter: event.target.value })
@@ -21,7 +22,25 @@ var QuestionsList = React.createClass({
     filter = this.state.filter;
     if(filter) window.location = '?filter=' + filter;
   },
-
+  sort_by: function(field, reverse, func){
+    var key = func ? function(x) {return func(x[field])} : function(x) {return x[field]};
+    reverse = !reverse ? 1 : -1;
+    return function (a, b) {
+      return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+    } 
+  },
+  sort: function(event){
+    by = event.target.getAttribute('data-sort_by');
+    elements = this.state.elements;
+    func = by == 'title' ? function(a){return a.toUpperCase()} : null;
+    order = !this.state.order_desc;
+    elements = elements.sort(this.sort_by(by, order, func));
+    this.setState({ 
+      sort_by: by, 
+      order_desc: order, 
+      elements: elements
+    });
+  },
   render: function () {
     var nodes = this.state.elements.map(function ( item ) {
       return <Question item={ item } key={ item.id } />
@@ -35,7 +54,18 @@ var QuestionsList = React.createClass({
             <button className="btn btn-primary" type="button" onClick={ this.submitFilter }>Search</button>
           </span>
         </div>
+
         <br/>
+
+        <div className="btn-group btn-group-xs">
+          <span className='pull-left'>Sort by: </span> 
+          <button type="button" className="btn btn-default" onClick={ this.sort } data-sort_by='timestamp'> time</button>
+          <button type="button" className="btn btn-default" onClick={ this.sort } data-sort_by='votes_total'> votes</button>
+          <button type="button" className="btn btn-default" onClick={ this.sort } data-sort_by='title'> title</button>
+          <div className='clearfix'></div>
+        </div>
+
+        <br/><br/>
 
         <div className="list-group">
           { nodes }

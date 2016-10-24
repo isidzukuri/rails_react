@@ -27,6 +27,7 @@ class QuestionPresenter
     @struct = item.as_json(include: [:user])
     struct['votes_total'] = item.votes_total
     struct['date'] = readable_time
+    struct['timestamp'] = item.created_at.to_i
     struct
   end
 
