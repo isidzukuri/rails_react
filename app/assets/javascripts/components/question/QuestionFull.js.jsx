@@ -7,7 +7,11 @@ var QuestionFull = React.createClass({
     var newState = React.addons.update(this.state, {
       item: {
         content: { $set: data.content },
-        title: { $set: data.title }
+        title: { $set: data.title },
+        tags: { $set: data.tags },
+        tags_string: { $set: data.tags_string }
+
+        //tags
       }
     });
     this.setState(newState);
@@ -54,7 +58,11 @@ var QuestionFull = React.createClass({
               <div>
                 { item.content }
                 <small className='pull-right text-lowercase'>{ item.user.email } at { item.date }</small>
-              </div>              
+              </div>  
+
+              <TagsList items={ item.tags } />
+
+                    
             </div>
             
             <div className="panel-footer">

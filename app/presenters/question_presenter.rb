@@ -7,6 +7,10 @@ class QuestionPresenter
     new(item).list_item_struct
   end
 
+  def self.to_item(item)
+    new(item).to_item
+  end
+
   attr_reader :item, :user_id
 
   def initialize(obj, author_id = nil)
@@ -15,10 +19,11 @@ class QuestionPresenter
   end
 
   def to_full
-    @struct = item.as_json(include: [:user, :comments])
+    @struct = item.as_json(include: [:user, :comments, :tags])
     struct['editable'] = editable
     struct['votes_total'] = item.votes_total
     struct['date'] = readable_time
+    struct['tags_string'] = tags_string
     include_answers
     struct
   end
@@ -28,6 +33,12 @@ class QuestionPresenter
     struct['votes_total'] = item.votes_total
     struct['date'] = readable_time
     struct['timestamp'] = item.created_at.to_i
+    struct
+  end
+
+  def to_item
+    @struct = item.as_json(include: :tags)
+    struct['tags_string'] = tags_string
     struct
   end
 
@@ -45,5 +56,9 @@ class QuestionPresenter
 
   def editable
     user_id == item.user_id
+  end
+
+  def tags_string
+    item.tags.map(&:title).join(' ')
   end
 end

@@ -31,7 +31,8 @@ RSpec.describe QuestionsController, type: :controller do
       params = { question: question_hash }
       sign_in user
       post :create, params
-      expect(JSON.parse(response.body)).to include(question_hash.as_json)
+      responce_hash = {"redirect" => "/questions/2"}
+      expect(JSON.parse(response.body)).to include(responce_hash.as_json)
     end
   end
 

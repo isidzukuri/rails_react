@@ -4,6 +4,7 @@ class QuestionForm extends Form{
     var form = this.props.form
     var title_val = this.props.item ? this.props.item.title : '';
     var content_val = this.props.item ? this.props.item.content : '';
+    var tags_val = this.props.item ? this.props.item.tags_string : '';
     var method = form.method || 'post';
 
     return (
@@ -18,6 +19,13 @@ class QuestionForm extends Form{
           <label>Content</label>
          <textarea ref="content" className="form-control" name="question[content]" defaultValue={ content_val } />
         </div>
+
+        <div className="form-group">
+          <label>Tags</label>
+          <p className="text-muted">* Delimit tags by space. Combine multiple words into single-words with dashes</p>
+          <input ref="title" className="form-control" name="question[tags]" defaultValue={ tags_val }/>
+        </div>
+
         <button type="submit" className='btn btn-primary'>submit</button>
         <ValidationErrorsList items={ this.state.errors } />
       </form>
