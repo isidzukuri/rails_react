@@ -32,7 +32,7 @@ module LetCollection
         { title: 'question?',
           content: 'question content?',
           user_id: 1,
-          votes_total: 0}
+          votes_total: 0 }
       end
       let(:question_hash) do
         { title: 'question?',
@@ -56,7 +56,6 @@ module LetCollection
           title: 'tag_2'
         )
       end
-
     end
   end
 end

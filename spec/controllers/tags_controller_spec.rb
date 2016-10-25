@@ -17,9 +17,8 @@ RSpec.describe TagsController, type: :controller do
 
   describe 'show' do
     it 'has a 200 status code' do
-      get :show, params: {id: tag.id}
+      get :show, params: { id: tag.id }
       expect(response.status).to eq(200)
     end
   end
-
 end

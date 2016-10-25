@@ -20,7 +20,7 @@ RSpec.describe QuestionPresenter do
   describe '#to_list_item' do
     it 'should have data' do
       expect(list_item).to include(question_list_item.as_json)
-      expect(list_item['user']).to include({id: 1, email: "user@example.com"}.as_json)
+      expect(list_item['user']).to include({ id: 1, email: 'user@example.com' }.as_json)
     end
   end
 

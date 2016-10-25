@@ -14,5 +14,4 @@ class TagsController < ApplicationController
     filter = {}
     filter = ['title LIKE ?', "%#{params[:filter]}%"] if params[:filter]
   end
-
 end
