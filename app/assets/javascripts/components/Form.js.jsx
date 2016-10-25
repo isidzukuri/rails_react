@@ -40,12 +40,16 @@ var Form = React.createClass({
       type: 'post',
       dataType: "json",
       success: function ( data ) {
+        console.log('data')
         if(data.errors){
           this.setState( { errors: data.errors } );
-        }else{
+        }else if(this.props.afterSend){
           this.setState( { errors: [] } );
           this.props.afterSend(data);
-        }        
+        }
+        if(data.redirect){
+          window.location = data.redirect;
+        }      
       }.bind(this)
     });
   }

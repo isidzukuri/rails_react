@@ -10,12 +10,23 @@ class QuestionsController < ApplicationController
     }
   end
 
+  def new
+    @presenter = form(questions_path)
+    ap @presenter
+  end
+
   def create
     data = permited_params
     data[:user] = current_user
     @item = Question.new(data)
     @item.save
-    save_responce
+    # save_responce
+    result = if @item.errors.any?
+               { errors: @item.errors.messages.to_a }
+             else
+               { redirect: question_path(@item)}
+             end
+    render json: result
   end
 
   def show
