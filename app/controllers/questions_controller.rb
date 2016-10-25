@@ -4,10 +4,7 @@ class QuestionsController < ApplicationController
 
   def index
     items = Question.where(filter).eager_load(:user, :votes).all
-    @presenter = {
-      items: items.map { |item| QuestionPresenter.to_list_item(item) },
-      form: form(questions_path)
-    }
+    @items = items.map { |item| QuestionPresenter.to_list_item(item) }
   end
 
   def new
@@ -32,9 +29,9 @@ class QuestionsController < ApplicationController
       item: @item,
       form: form(question_path(@item), 'PUT')
     }
-  rescue
-    flash[:error] = "Something wrong with item #{params[:id]}, call your admin."
-    redirect_to root_path
+  # rescue
+  #   flash[:error] = "Something wrong with item #{params[:id]}, call your admin."
+  #   redirect_to root_path
   end
 
   def update

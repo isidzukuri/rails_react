@@ -10,8 +10,6 @@ var QuestionFull = React.createClass({
         title: { $set: data.title },
         tags: { $set: data.tags },
         tags_string: { $set: data.tags_string }
-
-        //tags
       }
     });
     this.setState(newState);
@@ -59,10 +57,7 @@ var QuestionFull = React.createClass({
                 { item.content }
                 <small className='pull-right text-lowercase'>{ item.user.email } at { item.date }</small>
               </div>  
-
               <TagsList items={ item.tags } />
-
-                    
             </div>
             
             <div className="panel-footer">

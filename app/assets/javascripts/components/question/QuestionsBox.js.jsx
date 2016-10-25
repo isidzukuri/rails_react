@@ -1,6 +1,6 @@
 var QuestionsBox = React.createClass({
   getInitialState: function () {
-    return this.props.presenter;
+    return this.props;
   },
 
   updateList: function ( data ) {

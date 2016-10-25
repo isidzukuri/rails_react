@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :questions
   resources :answers, except: [:show, :edit]
   resources :comments, except: [:show, :edit]
+  resources :tags
 
   get '/vote', to: 'votes#vote', as: 'vote'
 
