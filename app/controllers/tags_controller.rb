@@ -5,7 +5,8 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find(params[:id])
-    @items = @tag.questions.where(filter).map { |item| QuestionPresenter.to_list_item(item) }
+    questions = @tag.questions.where(filter)
+    @items = questions.map { |item| QuestionPresenter.to_list_item(item) }
   end
 
   private
