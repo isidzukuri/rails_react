@@ -34,6 +34,16 @@ RSpec.describe QuestionsController, type: :controller do
       responce_hash = {"redirect" => "/questions/2"}
       expect(JSON.parse(response.body)).to include(responce_hash.as_json)
     end
+
+    it 'should create tags also' do
+      question_hash['tags'] = 'new_tag another'
+      params = { question: question_hash }
+      sign_in user
+      post :create, params
+      expect(Question.last.tags.count).to eq 2
+      expect(Question.last.tags[0].title).to eq 'new_tag'
+      expect(Question.last.tags[1].title).to eq 'another'
+    end
   end
 
   describe 'update' do
@@ -53,6 +63,20 @@ RSpec.describe QuestionsController, type: :controller do
       item['title'] = 'updated'
       expect { post :update, id: item['id'], question: item }.to raise_error SecurityError
     end
+
+    it 'should synchronize tags' do
+      item = question.as_json
+      item['tags'] = 'tag1 tag2'
+      sign_in user
+
+      post :update, id: item['id'], question: item
+      expect(JSON.parse(response.body)['tags_string']).to eq 'tag1 tag2'
+
+      item['tags'] = 'tag1'
+      post :update, id: item['id'], question: item
+      expect(JSON.parse(response.body)['tags_string']).to eq 'tag1'
+    end
+
   end
 
   describe 'show' do

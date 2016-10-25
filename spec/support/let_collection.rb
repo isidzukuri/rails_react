@@ -45,6 +45,18 @@ module LetCollection
           user_id: 1,
           votes_total: 0 }
       end
+
+      let!(:tag) do
+        Tag.create(
+          title: 'tag_1'
+        )
+      end
+      let!(:tag2) do
+        Tag.create(
+          title: 'tag_2'
+        )
+      end
+
     end
   end
 end
