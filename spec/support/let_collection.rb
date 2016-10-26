@@ -17,8 +17,16 @@ module LetCollection
           password_confirmation: 'password'
         )
       end
-      let!(:question) { Question.create(title: 'question?', content: 'question content?', user: user) }
+
       let!(:answer) { Answer.create(question: question, content: 'answer content', user: user) }
+      let(:expected_answer_hash) do
+        { question_id: 1,
+          content: 'answer content',
+          user_id: 1,
+          votes_total: 0 }
+      end
+
+      let!(:question) { Question.create(title: 'question?', content: 'question content?', user: user) }
       let!(:full_question_struct) { QuestionPresenter.full(question, user.id) }
       let!(:question_list_item_struct) { QuestionPresenter.full(question) }
       let(:expected_question_hash) do
@@ -39,12 +47,8 @@ module LetCollection
           content: 'question content?',
           user_id: 1 }
       end
-      let(:expected_answer_hash) do
-        { question_id: 1,
-          content: 'answer content',
-          user_id: 1,
-          votes_total: 0 }
-      end
+
+      
 
       let!(:tag) do
         Tag.create(
