@@ -43,11 +43,12 @@ var Votes = React.createClass({
 
   render: function () {
     var item = this.state.item;
+    var color = item.votes_total < 0 ? 'text-danger' : '';
     return (
       <div className='col-sm-1'>
         <div className="badge">
           <b onClick={ this.plus }>+</b><br/>
-          { item.votes_total}<br/>
+          <span className={ color }>{ item.votes_total}</span><br/>
           <b onClick={ this.minus }>-</b><br/>
         </div>
       </div>
