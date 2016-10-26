@@ -8,7 +8,7 @@ var Question = React.createClass({
       <a className={class_str} href={ href }>
         <Votes item={ item } type='question' />
         { item.title }
-        <small className='pull-right text-lowercase'>{ item.user.email } at { item.date }</small>
+        <Created item={ item } />
         <div className="clearfix"></div>
       </a>
     ) 

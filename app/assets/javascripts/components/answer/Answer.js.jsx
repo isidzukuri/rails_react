@@ -25,7 +25,7 @@ var Answer = React.createClass({
       <div className={ class_str }>
         <Votes item={ item } type='answer' />
         <p> { item.content } </p>
-        <small className='pull-right text-lowercase'>{ item.user.email } at { item.date }</small>
+        <Created item={ item } />
         <div className={show_button ? '' : 'hidden'}>
           <button className='pull-left btn btn-xs btn-success' onClick={ this.markHelpfull } >mark as helpfull</button>
         </div>

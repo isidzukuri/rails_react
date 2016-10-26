@@ -55,7 +55,7 @@ var QuestionFull = React.createClass({
               <Votes item={ item } type='question' />
               <div>
                 { item.content }
-                <small className='pull-right text-lowercase'>{ item.user.email } at { item.date }</small>
+                <Created item={ item } />
               </div>  
               <TagsList items={ item.tags } />
             </div>

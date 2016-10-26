@@ -24,6 +24,7 @@ class QuestionPresenter
     struct['votes_total'] = item.votes_total
     struct['date'] = readable_time
     struct['tags_string'] = tags_string
+    struct['user']['gravatar'] = item.user.gravatar
     include_answers
     struct
   end
@@ -33,6 +34,7 @@ class QuestionPresenter
     struct['votes_total'] = item.votes_total
     struct['date'] = readable_time
     struct['timestamp'] = item.created_at.to_i
+    struct['user']['gravatar'] = item.user.gravatar
     struct
   end
 
