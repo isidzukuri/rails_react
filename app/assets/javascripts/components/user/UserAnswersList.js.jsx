@@ -1,12 +1,12 @@
-var TagsList = React.createClass({
-  
+var UserAnswersList = React.createClass({
+
   render: function () {
     var nodes = this.props.items.map(function ( item ) {
-      return <Tag item={ item } key={ item.id } size='xs' />
+      return <UserAnswer item={ item } key={ item.id } />
     });
 
     return (
-      <div> 
+      <div className="list-group">
         { nodes }
       </div>
     )

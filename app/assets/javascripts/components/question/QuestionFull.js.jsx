@@ -45,7 +45,7 @@ var QuestionFull = React.createClass({
               <b>{ item.title }</b>
                {item.editable ? (
                   <div className='pull-right'>
-                    <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >edit</button>
+                    <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >edit</button>&nbsp;
                     <button onClick={this.handleDelete} className='btn btn-xs btn-danger' >delete</button>
                   </div>
                 )
@@ -72,7 +72,7 @@ var QuestionFull = React.createClass({
             <div className="panel-heading">
               Change question:
               <div className='pull-right'>
-                <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >cancel</button>
+                <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >cancel</button>&nbsp;
                 <button onClick={this.handleDelete} className='btn btn-xs btn-danger' >delete</button>
               </div>
             </div>
