@@ -1,0 +1,16 @@
+%h3= @item.email
+.row
+  .col-sm-6
+    .panel.panel-default
+      .panel-heading Questions:
+      .panel-body
+        = react_component('QuestionsList', |
+          {items: @questions.as_json},     |
+          {prerender: true})               |
+  .col-sm-6
+    .panel.panel-default
+      .panel-heading Answers:
+      .panel-body
+        = react_component('UserAnswersList', |
+          {items: @answers.as_json},         |
+          {prerender: true})                 |
