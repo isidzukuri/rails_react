@@ -19,9 +19,9 @@ module LetCollection
       end
       let!(:question) { Question.create(title: 'question?', content: 'question content?', user: user) }
       let!(:answer) { Answer.create(question: question, content: 'answer content', user: user) }
-      let!(:result) { QuestionPresenter.full(question, user.id) }
-      let!(:list_item) { QuestionPresenter.full(question) }
-      let(:expected_hash) do
+      let!(:full_question_struct) { QuestionPresenter.full(question, user.id) }
+      let!(:question_list_item_struct) { QuestionPresenter.full(question) }
+      let(:expected_question_hash) do
         { title: 'question?',
           content: 'question content?',
           user_id: 1,
