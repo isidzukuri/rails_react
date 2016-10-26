@@ -4,17 +4,16 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def save_responce
+  def save_responce(responce = nil)
     result = if @item.errors.any?
                { errors: @item.errors.messages.to_a }
              else
-               @item
+               responce || @item
              end
     render json: result
   end
 
   def require_permission
-    raise SecurityError.new('Resource not belongs to user.') unless current_user == @item.user
+    raise SecurityError, 'Resource not belongs to user.' unless current_user == @item.user
   end
-
 end

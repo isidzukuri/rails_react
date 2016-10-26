@@ -1,6 +1,5 @@
 var QuestionFull = React.createClass({
   getInitialState: function () {
-    console.log(this.props.presenter)
     return this.props.presenter;
   },
 
@@ -8,7 +7,9 @@ var QuestionFull = React.createClass({
     var newState = React.addons.update(this.state, {
       item: {
         content: { $set: data.content },
-        title: { $set: data.title }
+        title: { $set: data.title },
+        tags: { $set: data.tags },
+        tags_string: { $set: data.tags_string }
       }
     });
     this.setState(newState);
@@ -32,20 +33,6 @@ var QuestionFull = React.createClass({
     });
   },
 
-  addAnswer: function(data){
-    // this.setState({item:{ answers: this.state.item.answers.concat([data]) }})
-    answers = this.state.item.answers.concat([data]);
-    var newState = React.addons.update(this.state, {
-      item: {
-        answers: { $set: answers }
-      }
-    });
-    this.setState(newState);
-  },
-
-  markHelpfull: function(data){
-    this.setState( { item: data} );
-  },
 
   render: function () {
     var item = this.state.item;
@@ -65,9 +52,18 @@ var QuestionFull = React.createClass({
               : null}
             </div>
             <div className="panel-body">
-              { item.content }
-              <small className='pull-right'>{ item.user.email } at { item.created_at }</small>
+              <Votes item={ item } type='question' />
+              <div>
+                { item.content }
+                <Created item={ item } />
+              </div>  
+              <TagsList items={ item.tags } />
             </div>
+            
+            <div className="panel-footer">
+              <CommentsBox item={ item } type='question' form={ this.state.form } />
+            </div>
+            
           </div>
         </div>
 
@@ -86,16 +82,7 @@ var QuestionFull = React.createClass({
           </div>
         </div>
         
-        <div className='panel panel-info'>
-          <div className="panel-heading">
-            answers:
-          </div>
-          <div className="panel-body">
-            <AnswersList items={ item.answers } markHandler={ this.markHelpfull } helpfull_id={ item.answer_id } editable={ item.editable }  />
-            <hr/>
-            <AnswerForm question_id={ item.id } form={ this.state.form } clear_form={ true } afterSend={ this.addAnswer } />
-          </div>
-        </div>
+        <AnswerBox item={ item } form={ this.state.form } />
 
       </div>
     );

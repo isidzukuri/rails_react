@@ -23,11 +23,13 @@ var Answer = React.createClass({
 
     return (
       <div className={ class_str }>
+        <Votes item={ item } type='answer' />
         <p> { item.content } </p>
-        <small className='pull-right'>{ item.created_at }</small>
+        <Created item={ item } />
         <div className={show_button ? '' : 'hidden'}>
           <button className='pull-left btn btn-xs btn-success' onClick={ this.markHelpfull } >mark as helpfull</button>
         </div>
+        <CommentsBox item={ item } type='answer' form={ this.props.form } />
         <div className='clearfix'></div>
       </div>
     )

@@ -63,7 +63,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'twitter-bootstrap-rails', git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem 'active_decorator', '0.7.1'
 gem 'haml', '4.0.7'
 gem 'react-rails'
 gem 'devise', '4.2.0'

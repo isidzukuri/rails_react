@@ -1,3 +1,5 @@
+<h3><%= @tag.title %></h3>
+<p>questions:</p>
 <%= react_component('QuestionsBox', 
                     {items: @items.as_json}, 
                     {prerender: true}) %>
