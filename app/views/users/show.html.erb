@@ -1,0 +1,38 @@
+<h3><%= @item.email %></h3>
+<%#= react_component('QuestionsBox', 
+                    {items: @items.as_json}, 
+                    {prerender: true}) %>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">Questions:</div>
+      <div class="panel-body">
+        <!-- <div class="list-group">
+          <% @item.questions.each do |item| %>
+          <%= link_to item.title, question_path(item), class: 'list-group-item'%>
+          <% end %>
+        </div> -->
+        <%= react_component('QuestionsList', 
+                    {items: @questions.as_json}, 
+                    {prerender: true}) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">Answers:</div>
+      <div class="panel-body">
+        <!-- <div class="list-group">
+          <% @item.answers.each do |item| %>
+          <%= link_to item.content, question_path(item.id), class: 'list-group-item'%>
+          <% end %>
+        </div> -->
+        <%= react_component('UserAnswersList', 
+                    {items: @answers.as_json}, 
+                    {prerender: true}) %>
+      </div>
+    </div>
+  </div>
+</div>
