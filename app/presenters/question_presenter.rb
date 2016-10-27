@@ -19,13 +19,14 @@ class QuestionPresenter
   end
 
   def to_full
-    @struct = item.as_json(include: [:user, :comments, :tags])
+    @struct = item.as_json(include: [:user, :tags])
     struct['editable'] = editable
     struct['votes_total'] = item.votes_total
     struct['date'] = readable_time
     struct['tags_string'] = tags_string
     struct['user']['gravatar'] = item.user.gravatar
     include_answers
+    include_comments
     struct
   end
 
@@ -50,6 +51,10 @@ class QuestionPresenter
 
   def include_answers
     struct['answers'] = @item.answers.map { |answer| AnswerPresenter.full(answer, user_id) }
+  end
+
+  def include_comments
+    struct['comments'] = @item.comments.map { |comment| CommentPresenter.with_sub(comment) }
   end
 
   def readable_time

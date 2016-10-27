@@ -29,6 +29,7 @@ var Answer = React.createClass({
         <div className={show_button ? '' : 'hidden'}>
           <button className='pull-left btn btn-xs btn-success' onClick={ this.markHelpfull } >mark as helpfull</button>
         </div>
+        <div className='clearfix'></div>
         <CommentsBox item={ item } type='answer' form={ this.props.form } />
         <div className='clearfix'></div>
       </div>

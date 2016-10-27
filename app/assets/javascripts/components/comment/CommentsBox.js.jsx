@@ -19,10 +19,11 @@ var CommentsBox = React.createClass({
 
   render: function () {
     var item = this.state.item;
+
     return (
       <div>
-        <button onClick={ this.toggleForm } className='btn btn-xs btn-primary' >add comment</button>
-        <CommentsList items={ item.comments } />
+        <button onClick={ this.toggleForm } className='btn btn-xs btn-primary btn-comment' >add comment</button>
+        <CommentsList items={ item.comments } form={ this.state.form } />
         <div className={this.state.show_form ? '' : 'hidden'}>
           <CommentForm item_id={ item.id } type={this.state.type} form={ this.state.form } clear_form={ true } afterSend={ this.addItem } />
         </div>
