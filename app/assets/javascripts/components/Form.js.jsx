@@ -34,18 +34,22 @@ var Form = React.createClass({
 
   submit: function(){
     var formData = $( this.refs.form ).serialize();
+    action = this.refs.form.action.split('?')[0];
     $.ajax({
       data: formData,
-      url: this.refs.form.action,
+      url: action,
       type: 'post',
       dataType: "json",
       success: function ( data ) {
         if(data.errors){
           this.setState( { errors: data.errors } );
-        }else{
+        }else if(this.props.afterSend){
           this.setState( { errors: [] } );
           this.props.afterSend(data);
-        }        
+        }
+        if(data.redirect){
+          window.location = data.redirect;
+        }      
       }.bind(this)
     });
   }

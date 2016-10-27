@@ -7,7 +7,9 @@ var QuestionFull = React.createClass({
     var newState = React.addons.update(this.state, {
       item: {
         content: { $set: data.content },
-        title: { $set: data.title }
+        title: { $set: data.title },
+        tags: { $set: data.tags },
+        tags_string: { $set: data.tags_string }
       }
     });
     this.setState(newState);
@@ -43,15 +45,19 @@ var QuestionFull = React.createClass({
               <b>{ item.title }</b>
                {item.editable ? (
                   <div className='pull-right'>
-                    <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >edit</button>
+                    <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >edit</button>&nbsp;
                     <button onClick={this.handleDelete} className='btn btn-xs btn-danger' >delete</button>
                   </div>
                 )
               : null}
             </div>
             <div className="panel-body">
-              { item.content }
-              <small className='pull-right text-lowercase'>{ item.user.email } at { item.created_at }</small>
+              <Votes item={ item } type='question' />
+              <div>
+                { item.content }
+                <Created item={ item } />
+              </div>  
+              <TagsList items={ item.tags } />
             </div>
             
             <div className="panel-footer">
@@ -66,7 +72,7 @@ var QuestionFull = React.createClass({
             <div className="panel-heading">
               Change question:
               <div className='pull-right'>
-                <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >cancel</button>
+                <button onClick={ this.toggleForm } className='btn btn-xs btn-warning' >cancel</button>&nbsp;
                 <button onClick={this.handleDelete} className='btn btn-xs btn-danger' >delete</button>
               </div>
             </div>

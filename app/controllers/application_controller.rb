@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def save_responce
+  def save_responce(responce = nil)
     result = if @item.errors.any?
                { errors: @item.errors.messages.to_a }
              else
-               @item
+               responce || @item
              end
     render json: result
   end

@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :questions
   resources :answers, except: [:show, :edit]
   resources :comments, except: [:show, :edit]
+  resources :tags
+  resources :users
+
+  get '/vote', to: 'votes#vote', as: 'vote'
 
   match ':controller(/:action(/:id))', :via => 'get' 
 

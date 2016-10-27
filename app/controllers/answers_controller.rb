@@ -3,8 +3,8 @@ class AnswersController < ApplicationController
     data = permited_params
     data[:user] = current_user
     @item = Answer.new(data)
-    @item.save
-    save_responce
+    responce = @item.save ? AnswerPresenter.full(@item) : nil
+    save_responce responce
   end
 
   def helpfull
@@ -22,15 +22,6 @@ class AnswersController < ApplicationController
   end
 
   private
-
-  def save_responce
-    result = if @item.errors.any?
-               { errors: @item.errors.messages.to_a }
-             else
-               AnswerPresenter.full(@item)
-             end
-    render json: result
-  end
 
   def permited_params
     params.require(:answer).permit(:question_id, :content)

@@ -1,6 +1,6 @@
 var QuestionsBox = React.createClass({
   getInitialState: function () {
-    return this.props.presenter;
+    return this.props;
   },
 
   updateList: function ( data ) {
@@ -14,8 +14,7 @@ var QuestionsBox = React.createClass({
         <div className="panel-body">
           <QuestionsList items={ this.state.items } />
           <hr />
-          <h2>Add a question:</h2>
-          <QuestionForm form={ this.state.form } afterSend={ this.updateList } clear_form={ true } />
+          <a href="/questions/new" className='btn btn-primary'>Add question</a>
         </div>
       </div>
 

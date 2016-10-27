@@ -7,8 +7,10 @@
     .navbar-collapse.collapse.navbar-responsive-collapse
       %ul.nav.navbar-nav
         %li= link_to "Questions", questions_path
+        %li= link_to "Tags", tags_path
       %ul.nav.navbar-nav.navbar-right
         - if signed_in?
+          %li= link_to 'Profile', user_path(current_user)
           %li= link_to current_user.email, edit_user_registration_path
           %li= link_to "Logout", destroy_user_session_path, method: :delete
         - else
