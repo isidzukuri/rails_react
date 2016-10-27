@@ -15,7 +15,7 @@ class CommentForm extends Form{
 
         <div className="form-group">
           <label>Comment:</label>
-          <p className="text-muted app-muted">* allowed tags: a, b, i, code, 'ul','ol','li','p','br'</p>
+          <AllovedTags />
 
           <textarea ref="content" className="form-control" name="content" defaultValue={ content_val } />
         </div>

@@ -17,7 +17,8 @@ class QuestionForm extends Form{
         </div>
         <div className="form-group">
           <label>Content</label>
-         <textarea ref="content" className="form-control" name="question[content]" defaultValue={ content_val } />
+          <AllovedTags />
+          <textarea ref="content" className="form-control" name="question[content]" defaultValue={ content_val } />
         </div>
 
         <div className="form-group">

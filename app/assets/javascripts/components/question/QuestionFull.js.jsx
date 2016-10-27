@@ -54,7 +54,7 @@ var QuestionFull = React.createClass({
             <div className="panel-body">
               <Votes item={ item } type='question' />
               <div>
-                { item.content }
+                <div dangerouslySetInnerHTML={{__html: item.content}} />
                 <Created item={ item } />
               </div>  
               <TagsList items={ item.tags } />
