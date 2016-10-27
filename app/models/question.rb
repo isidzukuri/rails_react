@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
   include Votable
+  include HtmlContent
 
   has_many :answers, dependent: :delete_all
   belongs_to :user

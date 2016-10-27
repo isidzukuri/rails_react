@@ -60,6 +60,16 @@ module LetCollection
           title: 'tag_2'
         )
       end
+
+
+#        => "sub comment<a href=\"google.com\">dasdasd</a>" 
+# 2.3.0 :005 > Comment.first.comments << Comment.create(:content => 'sub comment<a href="google.com">dasdasd</div>', :user_id => 1)
+# Comment.first.comments << Comment.create(:content => 'sub comment<div>dasdasd</div>', :user_id => 1)
+# => "sub comment dasdasd" 
+
+
+
+
     end
   end
 end

@@ -22,7 +22,7 @@ class QuestionForm extends Form{
 
         <div className="form-group">
           <label>Tags</label>
-          <p className="text-muted">* Delimit tags by space. Combine multiple words into single-words with dashes</p>
+          <p className="text-muted app-muted">* Delimit tags by space. Combine multiple words into single-words with dashes</p>
           <input ref="title" className="form-control" name="question[tags]" defaultValue={ tags_val }/>
         </div>
 

@@ -15,15 +15,16 @@ class CommentForm extends Form{
 
         <div className="form-group">
           <label>Comment:</label>
-         <textarea ref="content" className="form-control" name="content" defaultValue={ content_val } />
+          <p className="text-muted app-muted">* allowed tags: a, b, i, code, 'ul','ol','li','p','br'</p>
+
+          <textarea ref="content" className="form-control" name="content" defaultValue={ content_val } />
         </div>
         <button type="submit" className='btn btn-primary'>submit</button>
         <ValidationErrorsList items={ this.state.errors } />
       </form>
     )
   }
-
- 
-  
 };
 
+// <TextEditor content_val={ content_val } name="content" />
+         // 

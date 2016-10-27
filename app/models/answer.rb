@@ -1,5 +1,6 @@
 class Answer < ApplicationRecord
   include Votable
+  include HtmlContent
 
   belongs_to :user
   belongs_to :question

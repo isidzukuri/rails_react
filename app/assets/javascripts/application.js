@@ -15,4 +15,5 @@
 //= require components
 //= require react_ujs
 //= require twitter/bootstrap
+//= require bootstrap-wysihtml5
 //= require_tree .
