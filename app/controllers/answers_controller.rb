@@ -4,7 +4,7 @@ class AnswersController < ApplicationController
     data[:user] = current_user
     @item = Answer.new(data)
     responce = @item.save ? AnswerPresenter.full(@item) : nil
-    save_responce responce
+    json_responce responce
   end
 
   def helpfull

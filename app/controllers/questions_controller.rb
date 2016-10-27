@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
       responce = { redirect: question_path(@item) }
       save_tags
     end
-    save_responce responce
+    json_responce responce
   end
 
   def show
@@ -39,7 +39,7 @@ class QuestionsController < ApplicationController
       save_tags
       responce = QuestionPresenter.to_item(@item)
     end
-    save_responce responce
+    json_responce responce
   end
 
   def destroy

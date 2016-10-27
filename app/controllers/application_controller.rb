@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def save_responce(responce = nil)
+  def json_responce(responce = nil)
     result = if @item.errors.any?
                { errors: @item.errors.messages.to_a }
              else
