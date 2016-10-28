@@ -25,6 +25,3 @@ class CommentForm extends Form{
     )
   }
 };
-
-// <TextEditor content_val={ content_val } name="content" />
-         // 

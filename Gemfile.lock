@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/nerian/bootstrap-wysihtml5-rails.git
+  revision: 245d7a99250cf999cc7a0bd4ca9785f74af0357b
+  specs:
+    bootstrap-wysihtml5-rails (0.3.3.8)
+      railties (>= 3.0)
+
+GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: d3776ddd0b89d28fdebfd6e1c1541348cc90e5cc
   specs:
@@ -56,8 +63,6 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.11)
-    bootstrap-wysihtml5-rails (0.3.3.8)
-      railties (>= 3.0)
     builder (3.2.2)
     byebug (9.0.6)
     capybara (2.10.1)
@@ -263,7 +268,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  bootstrap-wysihtml5-rails
+  bootstrap-wysihtml5-rails!
   byebug
   capybara
   coffee-rails (~> 4.2)

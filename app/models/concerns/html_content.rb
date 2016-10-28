@@ -6,7 +6,7 @@ module HtmlContent
   end
 
   def strip_tags
-    elements = ['b','a','ul','ol','li','p','br', 'code']
+    elements = ['b','a','ul','ol','li','p','br', 'code', 'u']
     attrs = {'a'=> ['href']}
     self.content = Sanitize.fragment(content, :elements => elements, :attributes => attrs).strip unless content.nil?
   end
